@@ -1,10 +1,25 @@
 body {
 	background-color: #8DCFD6;
 }
-div.welcome{
+div.welcome, div.options{
 	text-align: center;
 }
 #title{
 	font-size: 4em;
 }
 
+#response, #restart{
+	text-align: center;
+}
+
+#restartButton{
+	text-align: center;
+}
+
+#answer{
+	text-align: center;
+}
+
+#guessList{
+	text-align: center;
+}
