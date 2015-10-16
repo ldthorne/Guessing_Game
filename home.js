@@ -82,6 +82,7 @@ var response = function(){
 		}else{
 			$("#answer > h1").text("You got it! It took you "+guessNum + " guesses.")
 		}
+		$("#submitGuess").prop("disabled",true);
 		$("body").css("background-color","#32CD32");
 		$("#answer > h2").text("Do you want to play again?");
 		$("#restartButton").show();
