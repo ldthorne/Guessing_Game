@@ -34,6 +34,7 @@ var restartGame = function(){ //if they hit the reset button, reload the page (w
 
 var response = function(){
 	var guess = $("#submitNumber").val();
+	$("#submitNumber").val(""); //clear the textbox
 	guessNum++;
 	var currentDifference = Math.abs(guess-randInt);
 	var previousDifference = Math.abs(guesses[guesses.length-1]-randInt);
