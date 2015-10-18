@@ -38,20 +38,19 @@ var response = function(){
 	guessNum++;
 	var currentDifference = Math.abs(guess-randInt);
 	var previousDifference = Math.abs(guesses[guesses.length-1]-randInt);
-	if((guessNum>=numGuesses) && (guess != randInt)){ //checks what number guess vs how many guesses allowed. if it's the last guess and the guess is the random number, don't trigger this body
+	if(guess>100 || guess<1){ //error handling to make sure they guess a number between 1 and 100. decrement guess number so it doesn't count against them
+    	alert("That guess was not between 1 and 100. Try again with a different number.");
+    	guessNum--;
+    }else if(guesses.indexOf(guess)!=-1){ //check to see if they've already guessed that number before. if so, decrement the number of guesses so that it doesn't count
+    	alert("You've already guessed this! Try again");
+    	guessNum--;
+    }else if((guessNum>=numGuesses) && (guess != randInt)){ //checks what number guess vs how many guesses allowed. if it's the last guess and the guess is the random number, don't trigger this body
 		$("body").css("background-color","#FF0000"); //change background color
 		$("#submitGuess").prop("disabled",true); //disable the submit after number of guesses specified
 		$("#answer > h1").text("You ran out of guesses. The number was "+randInt+"."); //tell them what the number was
 		$("#answer > h2").text("Do you want to try again?"); //ask them to try again and create a button to click to restart
 		$("#restartButton").show(); //show the text and restart button 
 		$(".options").hide(); //hide the redundant and unnecessary reset and hint buttons
-		
-    }else if(guess>100 || guess<1){ //error handling to make sure they guess a number between 1 and 100. decrement guess number so it doesn't count against them
-    	alert("That guess was not between 1 and 100. Try again with a different number.");
-    	guessNum--;
-    }else if(guesses.indexOf(guess)!=-1){ //check to see if they've already guessed that number before. if so, decrement the number of guesses so that it doesn't count
-    	alert("You've already guessed this! Try again");
-    	guessNum--;
 	}else if(guess>randInt && guessNum == 1){ //if their guess is higher than the number
 		$("#answer > h1").text("Too high! You have "+(numGuesses-guessNum)+" guesses left.")
 		guesses.push(guess);
@@ -65,7 +64,6 @@ var response = function(){
 	}else if((currentDifference>previousDifference) && (randInt!=guess)){//further away guess
 		if(numGuesses-guessNum==1){
 			$("#answer > h1").text("You're getting colder! You have "+(numGuesses-guessNum)+" guess left.")
-
 		}else{
 			$("#answer > h1").text("You're getting colder! You have "+(numGuesses-guessNum)+" guesses left.")
 		}		
